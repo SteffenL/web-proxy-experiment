@@ -21,7 +21,16 @@ class WebProxy {
     }
 
     private function _getScriptUrl() {
-        return $_SERVER["SCRIPT_URL"];
+        // Apache supports the variable SCRIPT_URL, but IIS doesn't
+        // For this reason, we'll just use REQUEST_URI and remove the query string
+        $requestUri = $this->_getRequestUri();
+        $qsTokenPos = strpos($requestUri, "?");
+        if ($qsTokenPos === false) {
+            return $requestUri;
+        }
+
+        $scriptUrl = substr($requestUri, 0, $qsTokenPos);
+        return $scriptUrl;
     }
 
     private function _getRequestUri() {
@@ -66,7 +75,7 @@ class WebProxy {
                     // Skip articles that are out of the ordinary
                     continue;
                 }
-                
+
                 // This is only the first one, there may be more
                 $titleAnchorElement = $headingElement->getElementsByTagName("a")->item(0);
                 if (!$titleAnchorElement) {
