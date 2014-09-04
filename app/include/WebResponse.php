@@ -17,4 +17,8 @@ class WebResponse {
         $parts = explode(";", $this->_curl->response_headers['Content-Type'], 2);
         return isset($parts[0]) ? $parts[0] : null;
     }
+
+    public function getStatusCode() {
+        return $this->_curl->http_status_code;
+    }
 }

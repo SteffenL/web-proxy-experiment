@@ -328,6 +328,7 @@ HTML;
     private function _serveProxiedResponse($response, $customContent = null) {
         $content = ($customContent !== null) ? $customContent : $response->getContent();
 
+        http_response_code($response->getStatusCode());
         header("Content-Type: " . $response->getContentType());
         echo $content;
     }
