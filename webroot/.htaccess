@@ -1,0 +1,2 @@
+RewriteEngine On
+RewriteRule .* index_6eb63a051cf0ffb0252fdb73946f34ad.php [QSA,L]

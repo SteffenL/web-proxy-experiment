@@ -1,0 +1,6 @@
+{
+    "require": {
+        "masterminds/html5": "2.*",
+        "fguillot/picofeed": "dev-master"
+    }
+}
