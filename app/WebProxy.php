@@ -13,7 +13,6 @@ class WebProxy {
     private $_adLinkName = "SteffenL.com";
 
     public function handleRequest() {
-        // We can now do generic content retouching and serve the proxied response
         $response = $this->_executeWebRequest($this->_nrkUrl . $this->_getRequestUri());
         $customResponseContent = $this->_retouchProxiedResponseContent($response);
         $this->_serveProxiedResponse($response, $customResponseContent);
