@@ -98,7 +98,12 @@ class WebProxy {
                 }
 
                 $otherArticle = null;
-                $originalArticle = null;
+                $originalArticle = [
+                    "title" => $titleAnchorElement->textContent,
+                    "intro" => $hasOriginalIntroText ? $introTextElement->textContent : null,
+                    "image" => $imageElement->getAttribute("src"),
+                    "url" => $titleAnchorElement->getAttribute("href"),
+                ];
 
                 // Get a random seher.no article (if any)
                 if ($hasOtherArticle) {
@@ -106,15 +111,6 @@ class WebProxy {
                     $otherArticle = $otherArticlesPool[$otherArticleIndex];
                     // Don't use that article anymore
                     unset($otherArticlesPool[$otherArticleIndex]);
-                }
-                else {
-                    // Get the original article instead
-                    $originalArticle = [
-                        "title" => $titleText->textContent,
-                        "intro" => $introTextElement->textContent,
-                        "image" => $imageElement->getAttribute("src"),
-                        "url" => $titleAnchorElement->getAttribute("href"),
-                    ];
                 }
 
                 $articleToUse = $hasOtherArticle ? $otherArticle : $originalArticle;
@@ -132,7 +128,7 @@ class WebProxy {
                 $newTitleTextNode = $domDoc->createDocumentFragment();
                 // TODO: Handle HTML and badly formatted HTML in the title?
                 $newTitleTextNode->appendXML(<<<HTML
-<a href="{$otherArticle["url"]}">{$otherArticle["title"]}</a>
+<a href="{$originalArticle["url"]}">{$otherArticle["title"]}</a>
 HTML
                 );
 
