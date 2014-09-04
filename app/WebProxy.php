@@ -7,7 +7,6 @@ class WebProxy {
     private $_nrkShortUrl = "http://nrk.no";
     private $_seherUrl = "http://www.seher.no";
     private $_seherFeedUrl = "http://www.seher.no/rss-forside.xml/1";
-    private $_proxyUserAgent = "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:31.0) Gecko/20100101 Firefox/31.0";
 
     // Advertisement/Credit for author of this script :)
     private $_adLinkUrl = "https://www.steffenl.com";
