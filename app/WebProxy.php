@@ -50,10 +50,10 @@ class WebProxy {
         // Follow redirects
         $curl->setOpt(CURLOPT_FOLLOWLOCATION, true);
         // TODO: Set referer?
-        $responseContent = $curl->get($url);
+        $curl->get($url);
         $curl->close();
 
-        return new WebResponse($curl, $responseContent);
+        return new WebResponse($curl);
     }
 
     // Retouches the proxied response for the home page

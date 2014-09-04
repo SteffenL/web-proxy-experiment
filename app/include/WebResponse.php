@@ -1,15 +1,13 @@
 <?php
 class WebResponse {
     private $_curl = null;
-    private $_content = null;
 
-    function __construct($curl, $content) {
+    function __construct($curl) {
         $this->_curl = $curl;
-        $this->_content = $content;
     }
 
     public function getContent() {
-        return $this->_content;
+        return $this->_curl->raw_response;
     }
 
     public function getContentType() {
